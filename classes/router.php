@@ -30,6 +30,7 @@ Class Router {
             $route = 'index';
         }
 
+
         // Получаем части урла
         $route = trim($route, '/\\');
         $parts = explode('/', $route);
@@ -58,9 +59,11 @@ Class Router {
         if (empty($controller)) {
             $controller = 'index';
         }
+        
 
         // Получаем экшен
         $action = array_shift($parts);
+
         if (empty($action)) {
             $action = 'index';
         }
@@ -87,10 +90,13 @@ Class Router {
 
         // Если экшен не существует - 404
         if (is_callable(array($controller, $action)) == false) {
-            die ('404 Not Found');
-        }
+            array_unshift($args, $action);
+            $action = 'index';
+            if (is_callable(array($controller, $action)) == false)  die ('404 Not Found');
+        }        
+
 
         // Выполняем экшен
-        $controller->$action();
+        $controller->$action($args);
     }
 }

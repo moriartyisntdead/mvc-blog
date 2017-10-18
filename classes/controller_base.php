@@ -16,5 +16,5 @@ Abstract Class Controller_Base {
         $this->template = new Template($this->layouts, get_class($this));
     }
 
-    abstract function index();
+    //abstract function index($data="");
 }
