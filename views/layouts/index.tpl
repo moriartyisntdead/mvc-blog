@@ -34,11 +34,12 @@
 <!-- Main -->
 <div id="main">
 
-    <!-- Post -->
+    <!-- Posts -->
+    {foreach from=$articles item=article}
     <article class="post">
         <header>
             <div class="title">
-                <h2><a href="#">Назва статті</a></h2>
+                <h2><a href="#">{$article['title']}</a></h2>
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01">Листопад 1, 2015</time>
@@ -46,10 +47,7 @@
             </div>
         </header>
         <a href="#" class="image featured"><img src="images/pic01.jpg" alt=""/></a>
-        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod
-            placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non
-            congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus
-            vitae, ultricies congue gravida diam non fringilla.</p>
+        <p>{$article['description']}</p>
         <footer>
             <ul class="actions">
                 <li><a href="#" class="button big">Продовжити</a></li>
@@ -61,6 +59,7 @@
             </ul>
         </footer>
     </article>
+    {/foreach}
 
     <!-- Pagination -->
     <ul class="actions pagination">
