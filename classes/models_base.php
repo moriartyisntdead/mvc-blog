@@ -161,6 +161,7 @@ Abstract Class Models_Base{
         try{
             $db = $this->db;
             $stmt = $db->query($sql);
+            if ($stmt->rowCount() == 0) return false;
             $rows = $stmt->fetchAll();
             $this->dataResult = $rows;
         }catch(PDOException $e) {

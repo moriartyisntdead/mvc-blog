@@ -1,10 +1,7 @@
 <?php
 
 Class Model_Articles Extends Models_Base{
-    public function test(){
-        return 'test';
-    }
-
+    
     public function getCategoryAnchor(){
         $stmt = $this->db->prepare("select anchor from categories WHERE id=? LIMIT 1");
         $stmt->execute(array($this->category_id));
@@ -19,7 +16,4 @@ Class Model_Articles Extends Models_Base{
         else return $stmt->fetchObject();
     }
 
-    public function getArticle(){
-
-    }
 }
