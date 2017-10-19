@@ -52,13 +52,30 @@ Abstract Class Models_Base{
         try{
             $db = $this->db;
             $stmt = $db->query("SELECT * from $this->table WHERE id = $id");
-            $row = $stmt->fetch();
         }catch(PDOException $e) {
             echo $e->getMessage();
             exit;
         }
-        return $row;
+
+        return $this->setRow($stmt->fetchObject());;
     }
+
+    /*         */
+    public static function getById($id){
+        $s = new static;
+        if ($s->getRowById($id)) {
+            return $s;
+        }
+        return false;
+    }
+
+    public function setRow($row) {
+        foreach ($row as $k => $v)
+            $this->$k = $v;
+        return $this;
+    }
+
+    /*          */
 
     // запись в базу данных
     public function save() {

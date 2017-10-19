@@ -3,11 +3,10 @@
 // контролер
 Class Controller_Article Extends Controller_Base {
     // шаблон
-    public $layouts = "index";
+    public $layouts = "article";
 
     // экшен
     function index($data='') {
-
         if(!isset($data[0])) die("Категория не найдена");
 
         // создаем запрос
@@ -16,9 +15,10 @@ Class Controller_Article Extends Controller_Base {
         );
         $model = new Model_Articles($select); // создаем объект модели
         $articles = $model->getAllRows(); // получаем все строки
+        var_dump($articles) ;
 
         $this->template->vars('articles', $articles);
-        $this->template->view('index');
+        $this->template->view('article');
     }
 
 
