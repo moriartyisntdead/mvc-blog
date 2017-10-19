@@ -9,7 +9,7 @@
                 <h2><a href="#">{$article->title}</a></h2>
             </div>
             <div class="meta">
-                <time class="published" datetime="2015-11-01">Листопад 1, 2015</time>
+                <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
                 <a href="#" class="author"><span class="name">Автор</span><img src="/images/avatar.jpg" alt=""/></a>
             </div>
         </header>

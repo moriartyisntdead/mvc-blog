@@ -37,13 +37,14 @@
     <!-- Posts -->
     {foreach from=$articles item=article}
         {assign var=a value=Model_Articles::getById($article['id'])}
+        {assign var=user value=Model_Users::getById($article['author_id'])}
     <article class="post">
         <header>
             <div class="title">
                 <h2><a href="/article/{$a->getCategoryAnchor()}/{$article['url']}">{$article['title']}</a></h2>
             </div>
             <div class="meta">
-                <time class="published" datetime="2015-11-01">Листопад 1, 2015</time>
+                <time class="published" datetime="{$a->getDate()}">{$a->getDate()}</time>
                 <a href="#" class="author"><span class="name">Автор</span><img src="images/avatar.jpg" alt=""/></a>
             </div>
         </header>
@@ -51,7 +52,7 @@
         <p>{$article['description']}</p>
         <footer>
             <ul class="actions">
-                <li><a href="#" class="button big">Продовжити </a></li>
+                <li><a href="/article/{$a->getCategoryAnchor()}/{$article['url']}" class="button big">Продовжити </a></li>
             </ul>
             <ul class="stats">
                 <li><a href="#">General</a></li>
