@@ -24,10 +24,14 @@ Class Controller_Article Extends Controller_Base {
             $result = $article->fetchOne();
             if (!$result) die("Статья не найдена");
 
+            $user = new Model_Users();
+            $user->getRowById($article->author_id);
 
+            $comments = new Model_Comments();
 
             $this->template->vars('article', $article);
-            $this->template->vars('title', $article->title);
+            $this->template->vars('user', $user);
+            $this->template->vars('comments', $comments);
             $this->template->view('article');
         } else {
             die('Выводить список статей категории');

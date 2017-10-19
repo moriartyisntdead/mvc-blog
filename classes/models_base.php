@@ -79,7 +79,6 @@ Abstract Class Models_Base{
             $this->$k = $v;
         return $this;
     }
-
     /*          */
 
     // запись в базу данных

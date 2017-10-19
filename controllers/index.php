@@ -15,6 +15,8 @@ Class Controller_Index Extends Controller_Base {
         $model = new Model_Articles($select); // создаем объект модели
         $articles = $model->getAllRows(); // получаем все строки
 
+        $user = new Model_Users();
+
         $this->template->vars('articles', $articles);
         $this->template->view('index');
     }

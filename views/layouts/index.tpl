@@ -35,29 +35,29 @@
 <div id="main">
 
     <!-- Posts -->
-    {foreach from=$articles item=article}
-        {assign var=a value=Model_Articles::getById($article['id'])}
-        {assign var=user value=Model_Users::getById($article['author_id'])}
+    {foreach from=$articles item=a}
+        {assign var=article value=Model_Articles::getById($a['id'])}
+        {assign var=user value=Model_Users::getById($a['author_id'])}
     <article class="post">
         <header>
             <div class="title">
-                <h2><a href="/article/{$a->getCategoryAnchor()}/{$article['url']}">{$article['title']}</a></h2>
+                <h2><a href="/article/{$article->getCategoryAnchor()}/{$article->url}">{$article->title}</a></h2>
             </div>
             <div class="meta">
-                <time class="published" datetime="{$a->getDate()}">{$a->getDate()}</time>
-                <a href="#" class="author"><span class="name">Автор</span><img src="images/avatar.jpg" alt=""/></a>
+                <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
+                <a href="#" class="author"><span class="name">{$user->name}</span><img src="img/users/{$user->img}" alt=""/></a>
             </div>
         </header>
-        <a href="#" class="image featured"><img src="images/pic01.jpg" alt=""/></a>
-        <p>{$article['description']}</p>
+        <a href="/article/{$article->getCategoryAnchor()}/{$article->url}" class="image featured"><img src="img/articles/{$article->img}" alt=""/></a>
+        <p>{$article->description}</p>
         <footer>
             <ul class="actions">
-                <li><a href="/article/{$a->getCategoryAnchor()}/{$article['url']}" class="button big">Продовжити </a></li>
+                <li><a href="/article/{$article->getCategoryAnchor()}/{$article->url}" class="button big">Продовжити </a></li>
             </ul>
             <ul class="stats">
                 <li><a href="#">General</a></li>
                 <li><a href="#" class="icon fa-heart">28</a></li>
-                <li><a href="#" class="icon fa-comment">128</a></li>
+                <li><a href="/article/{$article->getCategoryAnchor()}/{$article->url}#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
             </ul>
         </footer>
     </article>

@@ -10,16 +10,16 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
-                <a href="#" class="author"><span class="name">Автор</span><img src="/images/avatar.jpg" alt=""/></a>
+                <a href="#" class="author"><span class="name">{$user->name}</span><img src="/img/users/{$user->img}" alt=""/></a>
             </div>
         </header>
-        <span class="image featured"><img src="/images/pic01.jpg" alt=""/></span>
+        <span class="image featured"><img src="/img/articles/{$article->img}" alt=""/></span>
         {$article->content}
         <footer>
             <ul class="stats">
                 <li><a href="#">General</a></li>
                 <li><a href="#" class="icon fa-heart">28</a></li>
-                <li><a href="#" class="icon fa-comment">128</a></li>
+                <li><a href="javascript:void();" class="icon fa-comment">{$comments->getCommentsCount()}</a></li>
             </ul>
         </footer>
         <section style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
@@ -28,15 +28,14 @@
                 aspernatur at beatae esse est explicabo fugit laborum maxime modi perferendis
                 placeat quae repellat reprehenderit soluta tempore, veritatis voluptas.
             </blockquote>
+
+{*            {foreach from=$articles item=a}
+                <blockquote>
+
+                </blockquote>
+            {/foreach}*}
         </section>
-        <section style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
-            <blockquote>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid
-                aspernatur at beatae esse est explicabo fugit laborum maxime modi perferendis
-                placeat quae repellat reprehenderit soluta tempore, veritatis voluptas.
-            </blockquote>
-        </section>
-        <section style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
+        <section id="comments" style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
             <h3>Новий коментар</h3>
             <form method="post" action="#">
                 <div class="row uniform">
