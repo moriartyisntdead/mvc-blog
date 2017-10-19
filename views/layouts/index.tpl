@@ -40,7 +40,7 @@
     <article class="post">
         <header>
             <div class="title">
-                <h2><a href="/article/category/{$article['url']}">{$article['title']}</a></h2>
+                <h2><a href="/article/{$a->getCategoryAnchor()}/{$article['url']}">{$article['title']}</a></h2>
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01">Листопад 1, 2015</time>
@@ -51,7 +51,7 @@
         <p>{$article['description']}</p>
         <footer>
             <ul class="actions">
-                <li><a href="#" class="button big">Продовжити {$a->getCategoryAnchor()}</a></li>
+                <li><a href="#" class="button big">Продовжити </a></li>
             </ul>
             <ul class="stats">
                 <li><a href="#">General</a></li>

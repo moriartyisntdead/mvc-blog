@@ -21,6 +21,11 @@ Abstract Class Models_Base{
         if($sql) $this->_getResult("SELECT * FROM $this->table" . $sql);
     }
 
+    public function select($select){
+        $sql = $this->_getSelect($select);
+        if($sql) $this->_getResult("SELECT * FROM $this->table" . $sql);
+    }
+
     // получить имя таблицы
     public function getTableName() {
         return $this->table;
