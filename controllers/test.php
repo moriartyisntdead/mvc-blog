@@ -1,7 +1,15 @@
 <?php
 
-$article = new Model_Comments();
+Class Controller_Test Extends Controller_Base {
+    function index() {
 
-//$article->getRowById(1);
-$article->getRowById(1);
-var_dump($article);
+
+        $article = new Model_Articles();
+        
+        $article->getRowById(1);
+        echo "<pre>";
+        var_dump($article->getComments());
+        echo "</pre>";
+    }
+}
+
