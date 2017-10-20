@@ -70,7 +70,21 @@ Class Model_Articles Extends Models_Base{
         $stmt = $this->db->prepare("select * from comments WHERE article_id=?");
         $stmt->execute(array($this->id));
         if ($stmt->rowCount() == 0) return false;
-        else return $stmt->fetchAll();
+        else return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getLikesCount(){
+        $stmt = $this->db->prepare("select count(id) AS k from likes WHERE row_id=?");
+        $stmt->execute(array($this->id));
+        if ($stmt->rowCount() == 0) return false;
+        else return $stmt->fetchObject()->k;
+    }
+
+    public function getTags(){
+        $stmt = $this->db->prepare("select * from tags WHERE article_id=?");
+        $stmt->execute(array($this->id));
+        if ($stmt->rowCount() == 0) return false;
+        else return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
 }

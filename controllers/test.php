@@ -8,7 +8,7 @@ Class Controller_Test Extends Controller_Base {
         
         $article->getRowById(1);
         echo "<pre>";
-        var_dump($article->getComments());
+        var_dump($article->getComments()[0]);
         echo "</pre>";
     }
 }

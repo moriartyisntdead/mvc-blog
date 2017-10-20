@@ -17,23 +17,25 @@
         {$article->content}
         <footer>
             <ul class="stats">
-                <li><a href="#">General</a></li>
-                <li><a href="#" class="icon fa-heart">28</a></li>
-                <li><a href="javascript:void();" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
+                {foreach from=$tags item=t}
+                    {assign var=tag value=Model_Tags::getById($t->id)}
+                    <li><a href="#">{$tag->tag}</a></li>
+                {/foreach}
+                <li><a href="#" class="icon fa-heart">{$article->getLikesCount()}</a></li>
+                <li><a href="#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
             </ul>
         </footer>
         <section style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
-            <blockquote>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid
-                aspernatur at beatae esse est explicabo fugit laborum maxime modi perferendis
-                placeat quae repellat reprehenderit soluta tempore, veritatis voluptas.
-            </blockquote>
-
-{*            {foreach from=$articles item=a}
-                <blockquote>
-
+            {foreach from=$comments item=c}
+                {assign var=comment value=Model_Comments::getById($c->id)}
+                <blockquote style="font-style: normal">
+                    <span class="comment-username">{$comment->name}</span>
+                    <br>
+                    {$comment->comment}
+                    <br>
+                    <div class="comment-date">{$comment->date|date_format:"%d.%m.%y, %H:%M"}</div>
                 </blockquote>
-            {/foreach}*}
+            {/foreach}
         </section>
         <section id="comments" style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
             <h3>Новий коментар</h3>

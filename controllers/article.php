@@ -25,13 +25,17 @@ Class Controller_Article Extends Controller_Base {
             if (!$result) die("Статья не найдена");
 
             $user = new Model_Users();
+            $comment = new Model_Comments();
+            $tag = new Model_Tags();
             $user->getRowById($article->author_id);
 
-//            $comments = new Model_Comments();
+            $comments = $article->getComments();
+            $tags = $article->getTags();
 
             $this->template->vars('article', $article);
             $this->template->vars('user', $user);
-//            $this->template->vars('comments', $comments);
+            $this->template->vars('comments', $comments);
+            $this->template->vars('tags', $tags);
             $this->template->view('article');
         } else {
             die('Выводить список статей категории');
