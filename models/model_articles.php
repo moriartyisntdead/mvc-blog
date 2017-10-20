@@ -59,11 +59,18 @@ Class Model_Articles Extends Models_Base{
         return date($month. ' d, Y', strtotime($this->date));
     }
 
-/*    public function getCommentsCount(){
+    public function getCommentsCount(){
         $stmt = $this->db->prepare("select count(id) AS k from comments WHERE article_id=?");
         $stmt->execute(array($this->id));
         if ($stmt->rowCount() == 0) return false;
         else return $stmt->fetchObject()->k;
-    }*/
+    }
+
+    public function getComments(){
+        $stmt = $this->db->prepare("select * from comments WHERE article_id=?");
+        $stmt->execute(array($this->id));
+        if ($stmt->rowCount() == 0) return false;
+        else return $stmt->fetchAll();
+    }
 
 }

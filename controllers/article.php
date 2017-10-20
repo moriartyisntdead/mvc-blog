@@ -27,11 +27,11 @@ Class Controller_Article Extends Controller_Base {
             $user = new Model_Users();
             $user->getRowById($article->author_id);
 
-            $comments = new Model_Comments();
+//            $comments = new Model_Comments();
 
             $this->template->vars('article', $article);
             $this->template->vars('user', $user);
-            $this->template->vars('comments', $comments);
+//            $this->template->vars('comments', $comments);
             $this->template->view('article');
         } else {
             die('Выводить список статей категории');
