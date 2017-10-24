@@ -60,10 +60,10 @@ Class Controller_Article Extends Controller_Base {
             $comment->comment = $message;
             $comment->name = $name;
             $comment->email = $email;
-            $comment->subscribe = $_POST['subscribe'] == true ? true : false;
+            $comment->subscribe = $_POST['subscribe'] == 'true' ? 1 : 0;
             $comment->ip = $_SERVER['REMOTE_ADDR'];
             $comment->date = date('Y-m-d G:i:s');
-            var_dump($_POST['subscribe']);
+//            var_dump($comment->subscribe);
 //            $comment->addComment();
 
         }
