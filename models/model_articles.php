@@ -69,7 +69,7 @@ Class Model_Articles Extends Models_Base{
     public function getComments(){
         $stmt = $this->db->prepare("select * from comments WHERE article_id=?");
         $stmt->execute(array($this->id));
-        if ($stmt->rowCount() == 0) return false;
+        if ($stmt->rowCount() == 0) return [];
         else return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
@@ -83,8 +83,14 @@ Class Model_Articles Extends Models_Base{
     public function getTags(){
         $stmt = $this->db->prepare("select * from tags WHERE article_id=?");
         $stmt->execute(array($this->id));
-        if ($stmt->rowCount() == 0) return false;
+        if ($stmt->rowCount() == 0) return [];
         else return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function addComment(){
+        $stmt = $this->db->prepare("insert into comments (article_id, comment, name, email, ip, date) values (?, ?, ?, ?, ?, ?)");
+        $stmt->execute(array($this->article_id, $this->comment, $this->name, $this->email, $this->ip, $this->date));
+
     }
 
 }

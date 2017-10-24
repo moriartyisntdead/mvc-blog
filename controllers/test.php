@@ -3,6 +3,7 @@
 Class Controller_Test Extends Controller_Base {
     function index() {
 
+        echo date('Y-m-d G:i:s');
 
         $article = new Model_Articles();
         

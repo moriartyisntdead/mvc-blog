@@ -10,7 +10,8 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
-                <a href="#" class="author"><span class="name">{$user->name}</span><img src="/img/users/{$user->img}" alt=""/></a>
+                <a href="#" class="author"><span class="name">{$user->name}</span><img src="/img/users/{$user->img}"
+                                                                                       alt=""/></a>
             </div>
         </header>
         <span class="image featured"><img src="/img/articles/{$article->img}" alt=""/></span>
@@ -25,7 +26,7 @@
                 <li><a href="#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
             </ul>
         </footer>
-        <section style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
+        <section id="comments" style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 1.5em 1.5em 1em;">
             {foreach from=$comments item=c}
                 {assign var=comment value=Model_Comments::getById($c->id)}
                 <blockquote style="font-style: normal">
@@ -35,21 +36,28 @@
                     <br>
                     <div class="comment-date">{$comment->date|date_format:"%d.%m.%y, %H:%M"}</div>
                 </blockquote>
+                {foreachelse}
+                Цю статтю ще не коментували.
             {/foreach}
         </section>
-        <section id="comments" style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
+        <section style="border-top: solid 1px rgba(160, 160, 160, 0.3);padding: 3em 1.5em 1em;">
             <h3>Новий коментар</h3>
-            <form method="post" action="#">
+            <form id="new-comment" method="post">
                 <div class="row uniform">
                     <div class="6u 12u$(xsmall)">
-                        <input type="text" name="demo-name" id="demo-name" value="" placeholder="Ім'я"/>
+                        <input type="hidden" name="article-id" id="article-id" value="{$article->id}"/>
+                        <input type="text" name="name" id="name" value="Ім'я" placeholder="Ім'я"/>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email"/>
+                        <input type="email" name="email" id="email" value="email@test" placeholder="Email"/>
                     </div>
                     <div class="12u$">
-                            <textarea name="demo-message" id="demo-message" placeholder="Введіть ваше повідомлення"
-                                      rows="6"></textarea>
+                            <textarea name="message" id="message" placeholder="Введіть ваше повідомлення"
+                                      rows="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias beatae delectus ea fugit harum iusto labore molestias nam nemo nobis, officiis,praesentium quibusdam reiciendis saepe sequi voluptas voluptates!</textarea>
+                    </div>
+                    <div class="6u$ 12u$(small)">
+                        <input type="checkbox" id="subscribe" name="subscribe">
+                        <label for="subscribe">Підписатись на розсилку</label>
                     </div>
                     <div class="12u$">
                         <ul class="actions">

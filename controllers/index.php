@@ -16,6 +16,7 @@ Class Controller_Index Extends Controller_Base {
         $articles = $model->getAllRows(); // получаем все строки
 
         $user = new Model_Users();
+        $tags = new Model_Tags();
 
         $this->template->vars('articles', $articles);
         $this->template->view('index');

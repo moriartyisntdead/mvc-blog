@@ -55,9 +55,11 @@
                 <li><a href="/article/{$article->getCategoryAnchor()}/{$article->url}" class="button big">Продовжити </a></li>
             </ul>
             <ul class="stats">
-                {foreach from=$tags item=t}
+                {foreach from=$article->getTags() item=t}
                     {assign var=tag value=Model_Tags::getById($t->id)}
                     <li><a href="#">{$tag->tag}</a></li>
+                {forelse}
+
                 {/foreach}
                 <li><a href="#" class="icon fa-heart">{$article->getLikesCount()}</a></li>
                 <li><a href="/article/{$article->getCategoryAnchor()}/{$article->url}#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>

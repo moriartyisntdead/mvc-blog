@@ -42,5 +42,30 @@ Class Controller_Article Extends Controller_Base {
         }
     }
 
+    function addComment(){
+        header('Content-type: application/json; charset=UTF-8');
+        if (isset($_POST['name'])) {
+            $id = htmlspecialchars($_POST['article-id']);
+            $name = htmlspecialchars($_POST['name']);
+            $email = htmlspecialchars($_POST['email']);
+            $message = htmlspecialchars($_POST['message']);
 
+            $id = urldecode($id);
+            $name = urldecode($name);
+            $email = urldecode($email);
+            $message = urldecode($message);
+
+            $comment = new Model_Articles();
+            $comment->article_id = $id;
+            $comment->comment = $message;
+            $comment->name = $name;
+            $comment->email = $email;
+            $comment->subscribe = $_POST['subscribe'] == true ? true : false;
+            $comment->ip = $_SERVER['REMOTE_ADDR'];
+            $comment->date = date('Y-m-d G:i:s');
+            var_dump($_POST['subscribe']);
+//            $comment->addComment();
+
+        }
+    }
 }
