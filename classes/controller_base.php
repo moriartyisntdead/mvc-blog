@@ -3,8 +3,8 @@
 // абстрактый класс контроллера
 Abstract Class Controller_Base {
 
-    protected $db;
     protected $registry;
+    protected $db;
     protected $template;
     protected $layouts; // шаблон
 
@@ -19,4 +19,5 @@ Abstract Class Controller_Base {
         // шаблоны
         $this->template = new Template($this->layouts, get_class($this));
     }
+
 }
