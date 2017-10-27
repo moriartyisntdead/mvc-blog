@@ -50,22 +50,26 @@
 
         <!-- Links -->
         <section>
+            {*{if isset($logged)}*}
+                <a href="/?action=out">Вихід</a>
+            {*{else}*}
             <h3>Вхід</h3>
-            <form method="post" action="#">
+            <form id="login-form" method="post">
                 <div class="row uniform">
                     <div class="12u$">
-                        <input type="text" name="login" id="login" value="" placeholder="Логін"/>
+                        <input type="text" name="login" id="login" value="admin" placeholder="Логін"/>
                     </div>
                     <div class="12u$">
-                        <input type="email" name="password" id="password" value="" placeholder="Пароль"/>
+                        <input type="password" name="password" id="password" value="admin" placeholder="Пароль"/>
                     </div>
                     <div class="12u$">
                         <ul class="actions vertical">
-                            <li><a href="#" class="button big fit">Увійти</a></li>
+                            <button type="submit" class="button big fit">Увійти</button>
                         </ul>
                     </div>
                 </div>
             </form>
+            {*{/if}*}
         </section>
 
     </section>
