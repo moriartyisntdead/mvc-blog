@@ -53,7 +53,7 @@
                     </div>
                     <div class="12u$">
                             <textarea name="message" id="message" placeholder="Введіть ваше повідомлення"
-                                      rows="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias beatae delectus ea fugit harum iusto labore molestias nam nemo nobis, officiis,praesentium quibusdam reiciendis saepe sequi voluptas voluptates!</textarea>
+                                      rows="6"></textarea>
                     </div>
                     <div class="6u$ 12u$(small)">
                         <input type="checkbox" id="subscribe" name="subscribe">

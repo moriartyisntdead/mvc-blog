@@ -3,6 +3,7 @@
 // абстрактый класс контроллера
 Abstract Class Controller_Base {
 
+    protected $db;
     protected $registry;
     protected $template;
     protected $layouts; // шаблон
@@ -12,9 +13,10 @@ Abstract Class Controller_Base {
     // в конструкторе подключаем шаблоны
     function __construct($registry) {
         $this->registry = $registry;
+
+        global $dbObject;
+        $this->db = $dbObject;
         // шаблоны
         $this->template = new Template($this->layouts, get_class($this));
     }
-
-    //abstract function index($data="");
 }

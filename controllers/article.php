@@ -45,6 +45,7 @@ Class Controller_Article Extends Controller_Base {
     function addComment(){
         header('Content-type: application/json; charset=UTF-8');
         if (isset($_POST['name'])) {
+            var_dump($_POST);
             $id = htmlspecialchars($_POST['article-id']);
             $name = htmlspecialchars($_POST['name']);
             $email = htmlspecialchars($_POST['email']);

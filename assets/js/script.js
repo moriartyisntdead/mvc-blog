@@ -33,12 +33,40 @@ $(function () {
                    console.log('1');
                },
                error: function (data) {
-                   console.log(data);
+                   console.error(data);
                    // location.reload();
                }
            });
        }
    });
+
+   $('#login-form').validate({
+       rules:{
+           login: {
+               required: true
+           },
+           password: {
+               required: true,
+               minlength: 5
+           }
+       }, submitHandler: function (form) {
+           $.ajax({
+               url: '/login',
+               type: 'POST',
+               data: {
+                   login: $('#login').val(),
+                   password: $('#password').val()
+               },
+               success: function (data) {
+                   console.log('success');
+               },
+               error: function (data) {
+                   console.error('error');
+               }
+           })
+       }
+   });
+
 
    jQuery.extend(jQuery.validator.messages, {
        required: 'Це поле обов\'язкове для заповнення',
