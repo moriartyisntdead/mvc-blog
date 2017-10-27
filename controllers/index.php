@@ -15,36 +15,38 @@ Class Controller_Index Extends Controller_Base {
         $model = new Model_Articles($select); // создаем объект модели
         $articles = $model->getAllRows(); // получаем все строки
 
-        $user = new Model_Users();
+        $user = new Model_Users();        
+        isset($_SESSION['UID']) ? $user->getRowById($_SESSION['UID']) : $user = false;
+
+
+        
         $tags = new Model_Tags();
 
         $this->template->vars('articles', $articles);
+        $this->template->vars('user', $user);
         $this->template->view('index');
     }
 
     function login(){
-//        header('Content-type: application/json; charset=UTF-8');
+
+        if (!isset($_POST['login']) || !isset($_POST['password'])) jsonError('no_data');
+
         $login = $_POST['login'];
-        $password = /*md5(*/$_POST['password']/*)*/;
-
-        var_dump($_POST);
-        session_start();
-
-/*        $stmt = $this->db->prepare("select id from users WHERE login=?");
-        $stmt->execute(array($login));
-        var_dump($stmt);
-        if ($stmt->rowCount() == 0) echo 'Такого користувача не існує';
-        else echo 'Користувача знайдено.';
+        $password = md5($_POST['password']);
 
         $stmt = $this->db->prepare("select id from users WHERE login=? AND password=?");
         $stmt->execute(array($login, $password));
-        var_dump($stmt);
-        if ($stmt->rowCount() == 0) echo 'Такого користувача не існує';
-        else echo 'Користувача знайдено.';*/
+        if ($stmt->rowCount() == 1){
+            $_SESSION['UID'] = $stmt->fetchObject()->id;
+            jsonSuccess();
+            
+        } else  jsonError('auth_error');            
 
-//        $_SESSION['UID'] = $stmt->fetchObject()->id;
-//        echo $_SESSION['UID'];
-//        $this->template->vars('logged', $_SESSION['UID']);
+    }
+
+    function logout(){
+        unset($_SESSION['UID']);
+        header('Location: http://'.$_SERVER['HTTP_HOST']);
     }
 
 }

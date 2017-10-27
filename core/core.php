@@ -45,6 +45,8 @@ function __autoload($className) {
 
 }
 
+session_start();
+
 /**
  * Debug
  * @param $data

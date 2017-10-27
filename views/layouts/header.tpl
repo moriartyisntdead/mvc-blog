@@ -50,26 +50,29 @@
 
         <!-- Links -->
         <section>
-            {*{if isset($logged)}*}
-                <a href="/?action=out">Вихід</a>
-            {*{else}*}
-            <h3>Вхід</h3>
-            <form id="login-form" method="post">
-                <div class="row uniform">
-                    <div class="12u$">
-                        <input type="text" name="login" id="login" value="admin" placeholder="Логін"/>
+            {if $user}
+                <h3>Привіт, {$user->name}</h3>
+                <ul class="actions vertical">
+                    <a href="/logout" class="button big fit">Вийти</a>
+                </ul>
+            {else}
+                <h3>Вхід</h3>
+                <form id="login-form" method="post">
+                    <div class="row uniform">
+                        <div class="12u$">
+                            <input type="text" name="login" id="login" value="admin" placeholder="Логін"/>
+                        </div>
+                        <div class="12u$">
+                            <input type="password" name="password" id="password" value="admin" placeholder="Пароль"/>
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions vertical">
+                                <button type="submit" class="button big fit">Увійти</button>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="12u$">
-                        <input type="password" name="password" id="password" value="admin" placeholder="Пароль"/>
-                    </div>
-                    <div class="12u$">
-                        <ul class="actions vertical">
-                            <button type="submit" class="button big fit">Увійти</button>
-                        </ul>
-                    </div>
-                </div>
-            </form>
-            {*{/if}*}
+                </form>
+            {/if}
         </section>
 
     </section>

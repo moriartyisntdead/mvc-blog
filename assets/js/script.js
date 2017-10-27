@@ -27,7 +27,7 @@ $(function () {
                    'email': $('#email').val(),
                    'message': $('#message').val(),
                    'article-id': $('#article-id').val(),
-                   subscribe: $('#subscribe').prop('checked')
+                   'subscribe': $('#subscribe').prop('checked')
                },
                success: function (data) {
                    if (data.status=='success') location.reload();
@@ -54,14 +54,19 @@ $(function () {
                url: '/login',
                type: 'POST',
                data: {
-                   login: $('#login').val(),
-                   password: $('#password').val()
+                   'login': $('#login-form #login').val(),
+                   'password': $('#login-form #password').val()
                },
                success: function (data) {
-                   console.log('success');
+                   if (data.status=='success') location.reload();
+                   else if (data.status=='error') {
+                       if (data.data=='no_data') alert("Введите данные для входа!");
+                       else if (data.data=='auth_error') alert("Неправильный логин/пароль!");
+                       else alert("Ошибка!");
+                   }
                },
                error: function (data) {
-                   console.error('error');
+                   console.error(data);
                }
            })
        }
