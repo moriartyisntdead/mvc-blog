@@ -30,11 +30,11 @@ $(function () {
                    subscribe: $('#subscribe').prop('checked')
                },
                success: function (data) {
-                   console.log('1');
+                   if (data.status=='success') location.reload();
+                   else if (data.status=='error') console.log(data.data);
                },
                error: function (data) {
                    console.log(data);
-                   // location.reload();
                }
            });
        }

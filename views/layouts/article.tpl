@@ -46,14 +46,13 @@
                 <div class="row uniform">
                     <div class="6u 12u$(xsmall)">
                         <input type="hidden" name="article-id" id="article-id" value="{$article->id}"/>
-                        <input type="text" name="name" id="name" value="Ім'я" placeholder="Ім'я"/>
+                        <input type="text" name="name" id="name" placeholder="Ім'я"/>
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        <input type="email" name="email" id="email" value="email@test" placeholder="Email"/>
+                        <input type="email" name="email" id="email"  placeholder="Email"/>
                     </div>
                     <div class="12u$">
-                            <textarea name="message" id="message" placeholder="Введіть ваше повідомлення"
-                                      rows="6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus alias beatae delectus ea fugit harum iusto labore molestias nam nemo nobis, officiis,praesentium quibusdam reiciendis saepe sequi voluptas voluptates!</textarea>
+                            <textarea name="message" id="message" placeholder="Введіть ваше повідомлення" rows="6"></textarea>
                     </div>
                     <div class="6u$ 12u$(small)">
                         <input type="checkbox" id="subscribe" name="subscribe">

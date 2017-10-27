@@ -58,7 +58,7 @@
                 {foreach from=$article->getTags() item=t}
                     {assign var=tag value=Model_Tags::getById($t->id)}
                     <li><a href="#">{$tag->tag}</a></li>
-                {forelse}
+                {foreachelse}
 
                 {/foreach}
                 <li><a href="#" class="icon fa-heart">{$article->getLikesCount()}</a></li>

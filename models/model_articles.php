@@ -1,6 +1,8 @@
 <?php
 
 Class Model_Articles Extends Models_Base{
+
+    
     
     public function getCategoryAnchor(){
         $stmt = $this->db->prepare("select anchor from categories WHERE id=? LIMIT 1");
@@ -86,11 +88,6 @@ Class Model_Articles Extends Models_Base{
         if ($stmt->rowCount() == 0) return [];
         else return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-
-    public function addComment(){
-        $stmt = $this->db->prepare("insert into comments (article_id, comment, name, email, ip, date) values (?, ?, ?, ?, ?, ?)");
-        $stmt->execute(array($this->article_id, $this->comment, $this->name, $this->email, $this->ip, $this->date));
-
-    }
+   
 
 }

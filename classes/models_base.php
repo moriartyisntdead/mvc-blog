@@ -62,7 +62,7 @@ Abstract Class Models_Base{
             exit;
         }
 
-        return $this->setRow($stmt->fetchObject());;
+        return $this->setRow($stmt->fetchObject());
     }
 
     /*         */

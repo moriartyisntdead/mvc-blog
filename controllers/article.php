@@ -55,16 +55,23 @@ Class Controller_Article Extends Controller_Base {
             $email = urldecode($email);
             $message = urldecode($message);
 
-            $comment = new Model_Articles();
+            $comment = new Model_Comments();
             $comment->article_id = $id;
             $comment->comment = $message;
             $comment->name = $name;
             $comment->email = $email;
-            $comment->subscribe = $_POST['subscribe'] == 'true' ? 1 : 0;
+            $comment->subscribe = ($_POST['subscribe'] == 'true' ? 1 : 0);
             $comment->ip = $_SERVER['REMOTE_ADDR'];
             $comment->date = date('Y-m-d G:i:s');
-//            var_dump($comment->subscribe);
-//            $comment->addComment();
+
+            try{
+                $comment->save();
+                jsonSuccess();
+            }
+            catch (Exception $e){
+                jsonError($e);
+            }
+
 
         }
     }
