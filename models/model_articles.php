@@ -1,8 +1,6 @@
 <?php
 
 Class Model_Articles Extends Models_Base{
-
-    
     
     public function getCategoryAnchor(){
         $stmt = $this->db->prepare("select anchor from categories WHERE id=? LIMIT 1");
@@ -69,7 +67,7 @@ Class Model_Articles Extends Models_Base{
     }
 
     public function getComments(){
-        $stmt = $this->db->prepare("select * from comments WHERE article_id=?");
+        $stmt = $this->db->prepare("select * from comments WHERE article_id=? order by date");
         $stmt->execute(array($this->id));
         if ($stmt->rowCount() == 0) return [];
         else return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -88,6 +86,6 @@ Class Model_Articles Extends Models_Base{
         if ($stmt->rowCount() == 0) return [];
         else return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
-   
+
 
 }

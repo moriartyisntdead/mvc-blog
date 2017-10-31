@@ -52,7 +52,8 @@
                         <input type="email" name="email" id="email"  placeholder="Email"/>
                     </div>
                     <div class="12u$">
-                            <textarea name="message" id="message" placeholder="Введіть ваше повідомлення" rows="6"></textarea>
+                        {*<textarea name="message" id="message" placeholder="Введіть ваше повідомлення" rows="6"></textarea>*}
+                        <div id="summernote" class="bootstrap">Hello Summernote</div>
                     </div>
                     <div class="6u$ 12u$(small)">
                         <input type="checkbox" id="subscribe" name="subscribe">
