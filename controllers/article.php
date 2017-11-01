@@ -75,4 +75,11 @@ Class Controller_Article Extends Controller_Base {
 
         }
     }
+
+    function addArticle(){
+        $user = new Model_Users();
+        isset($_SESSION['UID']) ? $user->getRowById($_SESSION['UID']) : $user = false;
+        $this->template->vars('user', $user);
+        $this->template->view('add_article');
+    }
 }
