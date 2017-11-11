@@ -143,5 +143,32 @@ $(function () {
         }
 
     });
+
+
+    /********************************************
+    **          Поставить/Снять лайк           **
+    ********************************************/
+    $('a.like').click(function(){
+        var link = $(this);
+        $.ajax({
+            url: '/article/like',
+            type: 'POST',
+            data: {id: link.data('id')},
+            success: function (data) {
+                if (data.status == 'success') {
+                    var count = (parseInt(link.html()));
+                    if (link.hasClass('active')) link.html(--count);
+                    else link.html(++count);
+                    link.toggleClass('active');
+                }
+                else if (data.status == 'error') console.log(data.data);
+            },
+            error: function (data) {
+                console.error(data);
+            }
+        });
+    });
+
+
 })
 ;

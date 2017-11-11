@@ -11,6 +11,9 @@ Class Controller_Article Extends Controller_Base {
 
         if (isset($data[1])) {
 
+            $user = new Model_Users();
+            isset($_SESSION['UID']) ? $user->getRowById($_SESSION['UID']) : $user = false;
+
             $article = new Model_Articles();
             $category = $article->getCategoryByAnchor($data[0]);
             if (!$category) die("Категория не найдена");
@@ -23,15 +26,16 @@ Class Controller_Article Extends Controller_Base {
             $result = $article->fetchOne();
             if (!$result) die("Статья не найдена");
 
-            $user = new Model_Users();
+            $author = new Model_Users();
             $comment = new Model_Comments();
             $tag = new Model_Tags();
-            $user->getRowById($article->author_id);
+            $author->getRowById($article->author_id);
 
             $comments = $article->getComments();
             $tags = $article->getTags();
 
             $this->template->vars('article', $article);
+            $this->template->vars('author', $author);
             $this->template->vars('user', $user);
             $this->template->vars('comments', $comments);
             $this->template->vars('tags', $tags);
@@ -120,13 +124,23 @@ Class Controller_Article Extends Controller_Base {
             catch (Exception $e){
                 jsonError($e);
             }
-
-
         }
 
         if (!$user) exit("Не авторизован");
         $this->template->vars('user', $user);
         $this->template->vars('categories', $categories);
         $this->template->view('add_article');
+    }
+
+    function like(){
+        if(isset($_POST['id'])){
+            $user = new Model_Users();
+            isset($_SESSION['UID']) ? $user->getRowById($_SESSION['UID']) : jsonError("Не авторизован");
+
+            $article = new Model_Articles();
+            $article->getRowById($_POST['id']);
+            if ($article->toggleLike($user->id)) jsonSuccess();
+            else jsonError();
+        } else exit();
     }
 }

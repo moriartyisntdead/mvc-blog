@@ -37,7 +37,7 @@
     <!-- Posts -->
     {foreach from=$articles item=a}
         {assign var=article value=Model_Articles::getById($a['id'])}
-        {assign var=user value=Model_Users::getById($a['author_id'])}
+        {assign var=author value=Model_Users::getById($a['author_id'])}
     <article class="post">
         <header>
             <div class="title">
@@ -45,7 +45,7 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
-                <a href="#" class="author"><span class="name">{$user->name}</span><img src="img/users/{$user->img}" alt=""/></a>
+                <a href="#" class="author"><span class="name">{$author->name}</span><img src="img/users/{$author->img}" alt=""/></a>
             </div>
         </header>
         <a href="/article/{$article->getCategoryAnchor()}/{$article->url}" class="image featured"><img src="img/articles/{$article->img}" alt=""/></a>
@@ -61,7 +61,7 @@
                 {foreachelse}
 
                 {/foreach}
-                <li><a href="#" class="icon fa-heart">{$article->getLikesCount()}</a></li>
+                <li><a href="#!" class="like icon fa-heart {if !$user}disabled{elseif $article->hasUserLike($user->id)}active{/if}" data-id="{$article->id}">{$article->getLikesCount()}</a></li>
                 <li><a href="/article/{$article->getCategoryAnchor()}/{$article->url}#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
             </ul>
         </footer>

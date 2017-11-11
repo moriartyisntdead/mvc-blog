@@ -10,7 +10,7 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
-                <a href="#" class="author"><span class="name">{$user->name}</span><img src="/img/users/{$user->img}" alt=""/></a>
+                <a href="#" class="author"><span class="name">{$author->name}</span><img src="/img/users/{$author->img}" alt=""/></a>
             </div>
         </header>
         <span class="image featured"><img src="/img/articles/{$article->img}" alt=""/></span>
@@ -21,7 +21,7 @@
                     {assign var=tag value=Model_Tags::getById($t->id)}
                     <li><a href="#">{$tag->tag}</a></li>
                 {/foreach}
-                <li><a href="#" class="icon fa-heart">{$article->getLikesCount()}</a></li>
+                <li><a href="#!" class="like icon fa-heart {if !$user}disabled{elseif $article->hasUserLike($user->id)}active{/if} " data-id="{$article->id}">{$article->getLikesCount()}</a></li>
                 <li><a href="#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
             </ul>
         </footer>

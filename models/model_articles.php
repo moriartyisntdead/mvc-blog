@@ -89,7 +89,7 @@ Class Model_Articles Extends Models_Base{
     }
 
     public function getLikesCount(){
-        $stmt = $this->db->prepare("select count(id) AS k from likes WHERE row_id=?");
+        $stmt = $this->db->prepare("select count(id) AS k from likes WHERE row_id=? AND type='article'");
         $stmt->execute(array($this->id));
         if ($stmt->rowCount() == 0) return false;
         else return $stmt->fetchObject()->k;
@@ -100,6 +100,32 @@ Class Model_Articles Extends Models_Base{
         $stmt->execute(array($this->id));
         if ($stmt->rowCount() == 0) return [];
         else return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function hasUserLike($userId){
+        $stmt = $this->db->prepare("select 1 from likes WHERE row_id=? AND user_id=? AND type='article'");
+        $stmt->execute(array($this->id, $userId));
+        if ($stmt->rowCount() > 0) return true;
+        else return false;
+    }
+
+    public function toggleLike($userId){
+        $stmt = $this->db->prepare("select id from likes WHERE row_id=? AND user_id=? AND type='article'");
+        $stmt->execute(array($this->id, $userId));
+        $like = new Model_Likes();
+        if ($stmt->rowCount() > 0) {
+            $likeId = $stmt->fetchObject()->id;
+            $like->getRowById($likeId);
+            if ($like->deleteRow() ) return true;
+            else return false;
+        }
+        else {
+            $like->row_id = $this->id;
+            $like->user_id = $userId;
+            $like->type = 'article';
+            if ($like->save()) return true;
+            else return false;
+        }
     }
 
 
