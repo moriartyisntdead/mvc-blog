@@ -27,8 +27,8 @@
             <ul>
                 <li class="search">
                     <a class="fa-search" href="#search">Пошук</a>
-                    <form id="search" method="get" action="#">
-                        <input type="text" name="query" placeholder="Пошук"/>
+                    <form id="search" method="get" action="/">
+                        <input type="text" name="search" placeholder="Пошук"/>
                     </form>
                 </li>
                 <li class="menu">
@@ -43,8 +43,8 @@
 
         <!-- Search -->
         <section>
-            <form class="search" method="get" action="#">
-                <input type="text" name="query" placeholder="Пошук"/>
+            <form class="search" method="get" action="/">
+                <input type="text" name="search" placeholder="Пошук"/>
             </form>
         </section>
 

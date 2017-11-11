@@ -97,6 +97,7 @@ Class Controller_Article Extends Controller_Base {
 
             // TODO: Проверка на уникальность URL
             // TODO: Проверка на существование категории
+            // TODO: Сделать добавление тегов к статье
 
             $newArticle = new Model_Articles();
             $newArticle->title = $title;

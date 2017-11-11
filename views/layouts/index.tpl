@@ -4,8 +4,8 @@
 
     <!-- Search -->
     <section>
-        <form class="search" method="get" action="#">
-            <input type="text" name="query" placeholder="Пошук"/>
+        <form class="search" method="get" action="/">
+            <input type="text" name="search" placeholder="Пошук"/>
         </form>
     </section>
 
@@ -87,7 +87,7 @@
 
     <!-- Intro -->
     <section id="intro">
-        <a href="#" class="logo"><img src="images/logo.jpg" alt=""/></a>
+        <a href="/" class="logo"><img src="images/logo.jpg" alt=""/></a>
         <header>
             <h2>Future Imperfect</h2>
         </header>

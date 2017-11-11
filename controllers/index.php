@@ -15,6 +15,11 @@ Class Controller_Index Extends Controller_Base {
             $where.=" AND id IN ($tagArticles)";
         }
 
+        if (isset($_GET['search'])){
+            $key = htmlspecialchars($_GET['search']);
+            $where.=" AND (title LIKE '%$key%' OR description LIKE '%$key%' OR content LIKE '%$key%')";
+        }
+
         // создаем запрос
         $select = array(
             'where' => $where, // условие
