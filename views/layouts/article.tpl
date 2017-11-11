@@ -10,8 +10,7 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
-                <a href="#" class="author"><span class="name">{$user->name}</span><img src="/img/users/{$user->img}"
-                                                                                       alt=""/></a>
+                <a href="#" class="author"><span class="name">{$user->name}</span><img src="/img/users/{$user->img}" alt=""/></a>
             </div>
         </header>
         <span class="image featured"><img src="/img/articles/{$article->img}" alt=""/></span>
@@ -52,8 +51,7 @@
                         <input type="email" name="email" id="email"  placeholder="Email"/>
                     </div>
                     <div class="12u$">
-                        {*<textarea name="message" id="message" placeholder="Введіть ваше повідомлення" rows="6"></textarea>*}
-                        <div id="summernote" class="bootstrap">Hello Summernote</div>
+                        <textarea name="message" id="message" placeholder="Введіть ваше повідомлення" rows="6"></textarea>
                     </div>
                     <div class="6u$ 12u$(small)">
                         <input type="checkbox" id="subscribe" name="subscribe">

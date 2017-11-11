@@ -1,6 +1,21 @@
 <?php
 
 Class Model_Articles Extends Models_Base{
+
+    public function fieldsTable(){
+        return array(
+            'id' => 'Id',
+            'title' => '',
+            'description' => '',
+            'content' => '',
+            'img' => '',
+            'author_id' => '',
+            'url' => '',
+            'published' => '',
+            'category_id' => '',
+            'date' => ''
+        );
+    }
     
     public function getCategoryAnchor(){
         $stmt = $this->db->prepare("select anchor from categories WHERE id=? LIMIT 1");

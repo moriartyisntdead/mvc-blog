@@ -53,6 +53,7 @@
             {if $user}
                 <h3>Привіт, {$user->name}</h3>
                 <ul class="actions vertical">
+                    <a href="/article/addArticle" class="button big fit">Додати статтю</a>
                     <a href="/logout" class="button big fit">Вийти</a>
                 </ul>
             {else}
