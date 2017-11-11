@@ -8,17 +8,22 @@ Class Controller_Index Extends Controller_Base {
     // экшен
     function index() {
 
+        $where = 'published = 1';
+
+        if (isset($_GET['tag'])){
+            $tagArticles = Model_Tags::getArticlesByTag($_GET['tag']) ?: 0;
+            $where.=" AND id IN ($tagArticles)";
+        }
+
         // создаем запрос
         $select = array(
-            'where' => 'published = 1', // условие
+            'where' => $where, // условие
         );
         $model = new Model_Articles($select); // создаем объект модели
         $articles = $model->getAllRows(); // получаем все строки
 
         $user = new Model_Users();        
         isset($_SESSION['UID']) ? $user->getRowById($_SESSION['UID']) : $user = false;
-
-
         
         $tags = new Model_Tags();
 

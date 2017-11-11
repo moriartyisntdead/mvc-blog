@@ -33,7 +33,7 @@ Abstract Class Models_Base{
 
     // получить все записи
     function getAllRows(){
-        if(!isset($this->dataResult) OR empty($this->dataResult)) return false;
+        if(!isset($this->dataResult) OR empty($this->dataResult)) return [];
         return $this->dataResult;
     }
 
@@ -160,7 +160,7 @@ Abstract Class Models_Base{
         try{
             $db = $this->db;
             $stmt = $db->query($sql);
-            if ($stmt->rowCount() == 0) return false;
+            if ($stmt->rowCount() == 0) return [];
             $rows = $stmt->fetchAll();
             $this->dataResult = $rows;
         }catch(PDOException $e) {

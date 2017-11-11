@@ -38,7 +38,7 @@
     {foreach from=$articles item=a}
         {assign var=article value=Model_Articles::getById($a['id'])}
         {assign var=author value=Model_Users::getById($a['author_id'])}
-    <article class="post">
+        <article class="post">
         <header>
             <div class="title">
                 <h2><a href="/article/{$article->getCategoryAnchor()}/{$article->url}">{$article->title}</a></h2>
@@ -57,7 +57,7 @@
             <ul class="stats">
                 {foreach from=$article->getTags() item=t}
                     {assign var=tag value=Model_Tags::getById($t->id)}
-                    <li><a href="#">{$tag->tag}</a></li>
+                    <li><a href="/&tag={$tag->tag}">{$tag->tag}</a></li>
                 {foreachelse}
 
                 {/foreach}
@@ -66,13 +66,19 @@
             </ul>
         </footer>
     </article>
+    {foreachelse}
+        <article class="post">
+            Статтей не знайдено!
+        </article>
     {/foreach}
 
+    {if $articles}
     <!-- Pagination -->
     <ul class="actions pagination">
         <li><a href="" class="disabled button big previous">Попередня сторінка</a></li>
         <li><a href="#" class="button big next">Наступна сторінка</a></li>
     </ul>
+    {/if}
 
 </div>
 

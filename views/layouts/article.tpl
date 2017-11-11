@@ -19,7 +19,7 @@
             <ul class="stats">
                 {foreach from=$tags item=t}
                     {assign var=tag value=Model_Tags::getById($t->id)}
-                    <li><a href="#">{$tag->tag}</a></li>
+                    <li><a href="/&tag={$tag->tag}">{$tag->tag}</a></li>
                 {/foreach}
                 <li><a href="#!" class="like icon fa-heart {if !$user}disabled{elseif $article->hasUserLike($user->id)}active{/if} " data-id="{$article->id}">{$article->getLikesCount()}</a></li>
                 <li><a href="#comments" class="icon fa-comment">{$article->getCommentsCount()}</a></li>
