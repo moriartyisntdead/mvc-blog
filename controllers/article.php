@@ -97,7 +97,6 @@ Class Controller_Article Extends Controller_Base {
 
             // TODO: Проверка на уникальность URL
             // TODO: Проверка на существование категории
-            // TODO: Сделать добавление тегов к статье
 
             $newArticle = new Model_Articles();
             $newArticle->title = $title;
@@ -115,16 +114,22 @@ Class Controller_Article Extends Controller_Base {
             // TODO: Проверка типа файла, расщирения и максимального размера
 
             if(!move_uploaded_file($_FILES['img']['tmp_name'], 'img/articles/'.$imgName)) {
-                jsonError("Не удалось загрузить изображение!");
+                jsonError("Не вдалося завантажити зображення!");
+            }
+            if($_FILES['img']['size'] > 1048576) {
+                jsonError("Розмір файлу надто великий.");
+            }
+            if(!(substr($_FILES['img']['type'],0, 5) == 'image')){
+                jsonError('Недопустимий тип файлу.');
             }
 
-            try{
+            try {
                 $newArticle->save();
                 jsonSuccess();
-            }
-            catch (Exception $e){
+            } catch (Exception $e) {
                 jsonError($e);
             }
+
         }
 
         if (!$user) exit("Не авторизован");

@@ -58,7 +58,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="file" name="article-image" id="article-image" style="display:none;">
+                <input type="file" name="article-image" id="article-image" style="display:none;" accept="image/*">
                 <label for="article-image"><i class="fa fa-upload"></i> Картинка статті</label>
             </div>
             <div>

@@ -87,10 +87,11 @@
 
     <!-- Intro -->
     <section id="intro">
-        <a href="/" class="logo"><img src="images/logo.jpg" alt=""/></a>
-        <header>
-            <h2>Future Imperfect</h2>
-        </header>
+        <a href="/" class="">
+            <header>
+                <h2>Blog</h2>
+            </header>
+        </a>
     </section>
 
     <!-- Mini Posts -->

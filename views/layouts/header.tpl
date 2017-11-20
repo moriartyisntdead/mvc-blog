@@ -20,9 +20,10 @@
 <body>
 <div id="wrapper">
 
+
     <!-- Header -->
     <header id="header">
-        <h1><a href="/">Лого</a></h1>
+        <h1><a href="/">Blog</a></h1>
         <nav class="main">
             <ul>
                 <li class="search">

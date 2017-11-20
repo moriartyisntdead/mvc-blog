@@ -31,10 +31,10 @@ Class Template {
 
     // отображение
     function view($name) {
-        $pathLayout = SITE_PATH  . DS . 'views' . DS . 'layouts' . DS . $this->layouts . '.tpl';
+        $pathLayout = SITE_PATH  . DS . 'views' . DS . 'layouts' . DS . $name . '.tpl';
         //$contentPage = SITE_PATH  . DS . 'views' . DS . $this->controller . DS . $name . '.php';
        if (file_exists($pathLayout) == false) {
-            trigger_error ('Layout `' . $this->layouts . '` does not exist.', E_USER_NOTICE);
+            trigger_error ('Layout `' . $name . '` does not exist.', E_USER_NOTICE);
             return false;
         }
 //        if (file_exists($contentPage) == false) {
