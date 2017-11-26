@@ -3,11 +3,11 @@
 <div id="main" style="padding: 0 180px 0;">
     <div class="post" style="padding: 55px 150px 30px;">
         <h1>Створити тему</h1>
-        <form id="article-form">
+        <form id="{$form}">
             <div class="title-block">
-                <input value="Заголовок"type="text" placeholder="Заголовок теми" id="article-title" name="article-title">
+                <input value="{$article->title|default:''}" type="text" placeholder="Заголовок теми" id="article-title" name="article-title">
             </div>
-            <textarea  id="article-description" name="article-description" placeholder="Короткий опис"></textarea>
+            <textarea  id="article-description" name="article-description" placeholder="Короткий опис">{$article->description|default:''}</textarea>
 
             <div id="toolbar">
                 <span class="ql-formats">
@@ -48,12 +48,12 @@
                     <button class="ql-image"></button>
                 </span>
             </div>
-            <div id="editor"></div>
+            <div id="editor">{$article->content|default:''}</div>
             <div class="form-group">
                 <select name="category" id="category">
                     <option value="" disabled selected>Оберіть категорію</option>
                     {foreach from=$categories item=c}
-                        <option value="{$c->id}">{$c->name}</option>
+                        <option {if ($article->category_id|default:'')==$c->id}selected{/if} value="{$c->id}">{$c->name}</option>
                     {/foreach}
                 </select>
             </div>
@@ -62,7 +62,7 @@
                 <label for="article-image"><i class="fa fa-upload"></i> Картинка статті</label>
             </div>
             <div>
-                <input type="text" name="url" id="url" placeholder="URL статті">
+                <input type="text" name="url" id="url" placeholder="URL статті" value="{$article->url|default:''}">
             </div>
             <br>
             <button type="submit" id="add-article" class="button big">Продовжити </button>

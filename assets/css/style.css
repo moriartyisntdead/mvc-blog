@@ -91,12 +91,18 @@ label[for='category']{
     color: hsla(0, 60%, 45%, 0.29) !important;
 }
 
-.meta{
+.meta, .title{
     position: relative;
 }
 
 .meta .deleteArticle{
     position: absolute;
     right: 15px;
+    top: 5px;
+}
+
+.title .editArticle{
+    position: absolute;
+    left: 15px;
     top: 5px;
 }

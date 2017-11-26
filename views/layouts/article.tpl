@@ -6,11 +6,17 @@
     <article class="post">
         <header>
             <div class="title">
+                {if $user}
+                <a href="/article/edit/{$article->id}" class="editArticle icon fa-pencil" title="Редагувати статтю"></a>
+                {/if}
                 <h2><a href="#">{$article->title}</a></h2>
             </div>
             <div class="meta">
                 <time class="published" datetime="{$article->getDate()}">{$article->getDate()}</time>
                 <a href="#" class="author"><span class="name">{$author->name}</span><img src="/img/users/{$author->img}" alt=""/></a>
+                {if $user}
+                <a href="#!" class="deleteArticle icon fa-trash-o" data-id="{$article->id}" title="Видалити статтю"></a>
+                {/if}
             </div>
         </header>
         <span class="image featured"><img src="/img/articles/{$article->img}" alt=""/></span>

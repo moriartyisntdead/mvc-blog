@@ -135,6 +135,7 @@ Class Controller_Article Extends Controller_Base {
         if (!$user) exit("Не авторизован");
         $this->template->vars('user', $user);
         $this->template->vars('categories', $categories);
+        $this->template->vars('form', 'article-form');
         $this->template->view('add_article');
     }
 
@@ -157,5 +158,30 @@ Class Controller_Article Extends Controller_Base {
             if ($article->deleteRow()) jsonSuccess();
             else jsonError();
         }
+    }
+
+    function edit($data){
+        $user = new Model_Users();
+        isset($_SESSION['UID']) ? $user->getRowById($_SESSION['UID']) : $user = false;
+
+        $id = $data[0];
+        $article = new Model_Articles();
+        @$article->getRowById($id);
+        if(@!$article->id)  exit("Такої статті не існує!");
+        //TODO:: Проверка, существует ли статья
+
+        $categories = new Model_Categories();
+        $categories = $categories->getActiveCategories();
+
+        if(isset($_POST['title'])){
+            $article->save();
+        }
+
+        if (!$user) exit("Не авторизован");
+        $this->template->vars('user', $user);
+        $this->template->vars('categories', $categories);
+        $this->template->vars('form', 'articleEditForm');
+        $this->template->vars('article', $article);
+        $this->template->view('add_article');
     }
 }

@@ -1,7 +1,7 @@
 $(function () {
-    var addArticle = window.location.href;
+
     //редактор текста
-    if (addArticle.indexOf('addArticle') > 0) {
+    if ($('#editor').length) {
         var editor = new Quill('#editor', {
             modules: {toolbar: '#toolbar'},
             theme: 'snow'
