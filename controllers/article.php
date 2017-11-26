@@ -149,4 +149,13 @@ Class Controller_Article Extends Controller_Base {
             else jsonError();
         } else exit();
     }
+
+    function delete(){
+        if(isset($_POST['id'])){
+            $article = new Model_Articles();
+            $article->getRowById($_POST['id']);
+            if ($article->deleteRow()) jsonSuccess();
+            else jsonError();
+        }
+    }
 }

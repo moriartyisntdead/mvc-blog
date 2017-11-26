@@ -170,5 +170,28 @@ $(function () {
     });
 
 
+    /********************************************
+    **             Удалить статью              **
+    ********************************************/
+    $('a.deleteArticle').click(function(){
+        var element = $(this);
+        if (confirm('Ви впевнені, що хочете видалити статтю?')) {
+            $.ajax({
+                url: '/article/delete',
+                type: 'POST',
+                data: {id: element.data('id')},
+                success: function (data) {
+                    if (data.status == 'success') element.closest('.post').hide('slow');
+                    else if (data.status == 'error') console.log(data.data);
+                },
+                error: function (data) {
+                    console.error(data);
+                }
+            });
+        }
+
+    });
+
+
 })
 ;

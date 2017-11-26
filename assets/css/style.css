@@ -90,3 +90,13 @@ label[for='category']{
 .like.active:hover, .like.active:hover:before{
     color: hsla(0, 60%, 45%, 0.29) !important;
 }
+
+.meta{
+    position: relative;
+}
+
+.meta .deleteArticle{
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
